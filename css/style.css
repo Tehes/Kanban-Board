@@ -1,11 +1,13 @@
 body {
     color: #333;
     background-color: #eee;
+
     font-family: 'Montserrat', sans-serif;
 }
 
 header {
     padding: 20px;
+
     color: #fff;
     background-color: #990000;
 }
@@ -14,27 +16,46 @@ button, input {
     height: 40px;
 }
 
+form {
+    max-width: 1200px;
+    margin: 40px auto;
+
+    text-align: center;
+}
+
 button {
     margin-left: 10px;
+    padding: 10px;
+
     text-transform: uppercase;
+
     border: 1px solid #ccc;
     background-color: #fff;
-    padding: 10px;
+
     font-size: 0.9em;
 }
 
 input {
-    font-size: 1em;
+    padding: 0 15px;
+
     border-top: none;
-    border-left: none;
     border-right: none;
     border-bottom: 1px solid #ccc;
+    border-left: none;
     background-color: #ddd;
-    padding: 0 5px;
+
+    font-size: 1em;
+    width: 83%;
+    outline: none;
+}
+
+input:focus {
+    border-bottom: 1px solid #aaa;
 }
 
 h1 {
     text-align: center;
+
     font-size: 2em;
 }
 
@@ -43,6 +64,7 @@ h1 {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+
     box-sizing: border-box;
     max-width: 1200px;
     margin: 0 auto;
@@ -50,9 +72,11 @@ h1 {
 
 .section {
     flex: 0 1 30%;
+
     box-sizing: border-box;
     min-height: 400px;
-    margin: 40px 15px;
+    margin: 0px 15px;
+
     border: 1px solid #ccc;
     background-color: #FFF;
 }
@@ -60,15 +84,19 @@ h1 {
 h3 {
     margin: 0 15px;
     padding: 10px;
+
     text-align: center;
     text-transform: uppercase;
+
     color: #990000;
     border-bottom: 1px solid #ccc;
+
     font-size: 1.1em;
 }
 
 .item {
     margin: 15px;
     padding: 10px;
+
     background-color: #ffec88;
 }

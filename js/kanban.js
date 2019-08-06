@@ -34,11 +34,11 @@ function init() {
 
 init();
 
-var newTaskButton = document.querySelector("#newTask");
+var formField = document.querySelector("form");
 
-newTaskButton.addEventListener("click", makeNewTask);
+formField.addEventListener("submit", makeNewTask);
 
-function makeNewTask() {
+function makeNewTask(ev) {
     var toDoSection = document.querySelector(".section");
     var taskNameField = document.querySelector("#taskName");
     var newItem = document.createElement("div");
@@ -52,4 +52,5 @@ function makeNewTask() {
     }
     newItem.addEventListener("dragstart", drag);
     toDoSection.appendChild(newItem);
+    ev.preventDefault();
 }
