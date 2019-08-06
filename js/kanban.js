@@ -35,8 +35,17 @@ function init() {
 init();
 
 var formField = document.querySelector("form");
+var taskNameField = document.querySelector("#taskName");
 
 formField.addEventListener("submit", makeNewTask);
+taskNameField.addEventListener("focus", function() {
+    this.value = "";
+});
+taskNameField.addEventListener("blur", function() {
+    if (this.value === "") {
+            this.value = "Here you can type in a new task";
+    }
+});
 
 function makeNewTask(ev) {
     var toDoSection = document.querySelector(".section");
@@ -46,8 +55,7 @@ function makeNewTask(ev) {
     newItem.draggable = true;
     if (taskNameField.value) {
         newItem.textContent = taskNameField.value;
-    }
-    else {
+    } else {
         return;
     }
     newItem.addEventListener("dragstart", drag);

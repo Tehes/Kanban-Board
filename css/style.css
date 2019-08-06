@@ -50,7 +50,7 @@ input {
 }
 
 input:focus {
-    border-bottom: 1px solid #aaa;
+    border-bottom: 1px solid #999;
 }
 
 h1 {
