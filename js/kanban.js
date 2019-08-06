@@ -17,36 +17,6 @@ function drop(ev) {
     document.querySelector("#" + data).removeAttribute("id");
 }
 
-function init() {
-    var sections, items, i;
-    sections = document.querySelectorAll(".section");
-    items = document.querySelectorAll(".item");
-
-    for (i = 0; i < sections.length; i++) {
-        sections[i].addEventListener("drop", drop);
-        sections[i].addEventListener("dragover", allowDrop);
-    }
-
-    for (i = 0; i < items.length; i++) {
-        items[i].addEventListener("dragstart", drag);
-    }
-}
-
-init();
-
-var formField = document.querySelector("form");
-var taskNameField = document.querySelector("#taskName");
-
-formField.addEventListener("submit", makeNewTask);
-taskNameField.addEventListener("focus", function() {
-    this.value = "";
-});
-taskNameField.addEventListener("blur", function() {
-    if (this.value === "") {
-            this.value = "Here you can type in a new task";
-    }
-});
-
 function makeNewTask(ev) {
     var toDoSection = document.querySelector(".section");
     var taskNameField = document.querySelector("#taskName");
@@ -62,3 +32,33 @@ function makeNewTask(ev) {
     toDoSection.appendChild(newItem);
     ev.preventDefault();
 }
+
+function init() {
+    var sections, items, i, formField, taskNameField;
+
+    sections = document.querySelectorAll(".section");
+    items = document.querySelectorAll(".item");
+    formField = document.querySelector("form");
+    taskNameField = document.querySelector("#taskName");
+
+    for (i = 0; i < sections.length; i++) {
+        sections[i].addEventListener("drop", drop);
+        sections[i].addEventListener("dragover", allowDrop);
+    }
+
+    for (i = 0; i < items.length; i++) {
+        items[i].addEventListener("dragstart", drag);
+    }
+
+    formField.addEventListener("submit", makeNewTask);
+    taskNameField.addEventListener("focus", function() {
+        this.value = "";
+    });
+    taskNameField.addEventListener("blur", function() {
+        if (this.value === "") {
+                this.value = "Here you can type in a new task";
+        }
+    });
+}
+
+init();
