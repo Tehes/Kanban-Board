@@ -19,6 +19,9 @@ function drop(ev) {
         ev.target.appendChild(document.querySelector("#" + data));
     } else if (ev.target.className === "item") {
         ev.target.parentElement.appendChild(document.querySelector("#" + data));
+    } else if (ev.target === document.body) {
+        document.querySelector("#" + data).remove();
+        return;
     }
     document.querySelector("#" + data).removeAttribute("id");
 }
