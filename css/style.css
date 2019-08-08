@@ -3,6 +3,7 @@ body {
     background-color: #eee;
 
     font-family: 'Montserrat', sans-serif;
+    height: 100vh;
 }
 
 header {
@@ -99,4 +100,5 @@ h3 {
     padding: 10px;
 
     background-color: #ffec88;
+    cursor: pointer;
 }
