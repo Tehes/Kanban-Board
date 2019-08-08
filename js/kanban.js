@@ -8,8 +8,14 @@ function drag(ev) {
 
 function drop(ev) {
     ev.preventDefault();
+    ev.stopPropagation();
     var data = ev.dataTransfer.getData("text");
-    if (ev.target.className === "section") {
+
+    if (ev.target === document.body) {
+        document.querySelector("#" + data).remove();
+        return;
+    }
+    else if (ev.target.className === "section") {
         ev.target.appendChild(document.querySelector("#" + data));
     } else if (ev.target.className === "item") {
         ev.target.parentElement.appendChild(document.querySelector("#" + data));
@@ -49,6 +55,8 @@ function init() {
     for (i = 0; i < items.length; i++) {
         items[i].addEventListener("dragstart", drag);
     }
+    document.body.addEventListener("drop", drop);
+    document.body.addEventListener("dragover", allowDrop);
 
     formField.addEventListener("submit", makeNewTask);
     taskNameField.addEventListener("focus", function() {
