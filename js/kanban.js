@@ -14,8 +14,7 @@ function drop(ev) {
     if (ev.target === document.body) {
         document.querySelector("#" + data).remove();
         return;
-    }
-    else if (ev.target.className === "section") {
+    } else if (ev.target.className === "section") {
         ev.target.appendChild(document.querySelector("#" + data));
     } else if (ev.target.className === "item") {
         ev.target.parentElement.appendChild(document.querySelector("#" + data));
@@ -40,6 +39,33 @@ function makeNewTask(ev) {
     newItem.addEventListener("dragstart", drag);
     toDoSection.appendChild(newItem);
     ev.preventDefault();
+}
+
+function saveBoard() {
+    var items, i, sectionName;
+    items = document.querySelectorAll(".item");
+    localStorage.clear();
+    for (i = 0; i < items.length; i++) {
+
+        sectionName = items[i].parentElement.id;
+        console.log(sectionName);
+        localStorage.setItem(sectionName + "_" + i, items[i].textContent);
+    }
+}
+
+function loadBoard() {
+    var i, x, sectioName, newItem;
+    for (i = 0; i < localStorage.length; i++) {
+        x = localStorage.key(i);
+        sectionName = x.substr(0, x.indexOf('_'));
+
+        newItem = document.createElement("div");
+        newItem.className = "item";
+        newItem.draggable = true;
+        newItem.textContent = localStorage.getItem(x);
+        newItem.addEventListener("dragstart", drag);
+        document.querySelector("#"+sectionName).appendChild(newItem);
+    }
 }
 
 function init() {
@@ -67,9 +93,11 @@ function init() {
     });
     taskNameField.addEventListener("blur", function() {
         if (this.value === "") {
-                this.value = "Here you can type in a new task";
+            this.value = "Here you can type in a new task";
         }
     });
+    window.addEventListener("beforeunload", saveBoard);
+    window.addEventListener("DOMContentLoaded", loadBoard);
 }
 
 init();

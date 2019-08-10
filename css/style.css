@@ -100,5 +100,9 @@ h3 {
     padding: 10px;
 
     background-color: #ffec88;
-    cursor: pointer;
+    cursor: grab;
+}
+
+#drag {
+    cursor: grabbing;
 }
