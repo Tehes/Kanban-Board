@@ -96,7 +96,7 @@ function init() {
             this.value = "Here you can type in a new task";
         }
     });
-    window.addEventListener("beforeunload", saveBoard);
+    window.addEventListener("unload", saveBoard);
     window.addEventListener("DOMContentLoaded", loadBoard);
 }
 
