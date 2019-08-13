@@ -1,9 +1,16 @@
 body {
+    height: 100vh;
+
     color: #333;
     background-color: #eee;
 
     font-family: 'Montserrat', sans-serif;
-    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+
+    color: inherit;
 }
 
 header {
@@ -37,17 +44,17 @@ button {
 }
 
 input {
+    width: 83%;
     padding: 0 15px;
 
     border-top: none;
     border-right: none;
     border-bottom: 1px solid #ccc;
     border-left: none;
+    outline: none;
     background-color: #ddd;
 
     font-size: 1em;
-    width: 83%;
-    outline: none;
 }
 
 input:focus {
@@ -103,8 +110,9 @@ h3 {
     margin: 15px;
     padding: 10px;
 
-    background-color: #ffec88;
     cursor: grab;
+
+    background-color: #ffec88;
 }
 
 #drag {

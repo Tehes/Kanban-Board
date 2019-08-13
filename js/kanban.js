@@ -41,7 +41,7 @@ function makeNewTask(section, content, e) {
         newItem = document.createElement("div");
         newItem.className = "item";
         newItem.draggable = true;
-        newItem.textContent = content[i];
+        newItem.textContent = content[i].trim();
         newItem.addEventListener("dragstart", drag);
         document.querySelector("#" + section).appendChild(newItem);
     }
