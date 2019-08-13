@@ -1,3 +1,9 @@
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 function allowDrop(e) {
     e.preventDefault();
 }
@@ -90,7 +96,13 @@ function init() {
     items = document.querySelectorAll(".item");
     formField = document.querySelector("form");
     taskNameField = document.querySelector("#taskName");
-    typeMessage = taskNameField.value;
+    typeMessage = [
+        "Here you can type in a new task",
+        "Drag an item on the background to delete it",
+        "Create multiple tasks at once by dividing your inputs with a +"
+    ];
+    var index = getRandomInt(0, typeMessage.length);
+    taskNameField.value = typeMessage[index];
 
     for (i = 0; i < sections.length; i++) {
         sections[i].addEventListener("drop", drop);
@@ -105,7 +117,8 @@ function init() {
     });
     taskNameField.addEventListener("blur", function() {
         if (this.value === "") {
-            this.value = typeMessage;
+            var index = getRandomInt(0, typeMessage.length);
+            this.value = typeMessage[index];
         }
     });
     window.addEventListener("unload", saveBoard);
