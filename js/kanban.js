@@ -14,21 +14,23 @@ function drop(e) {
 
     if (e.target === document.body) {
         document.querySelector("#" + data).remove();
-        return;
-    } else if (e.target.className === "section") {
-        e.target.appendChild(document.querySelector("#" + data));
-    } else if (e.target.className === "item") {
-        e.target.parentElement.appendChild(document.querySelector("#" + data));
+    } else {
+        if (e.target.className === "section") {
+            e.target.appendChild(document.querySelector("#" + data));
+        } else if (e.target.className === "item") {
+            e.target.parentElement.appendChild(document.querySelector("#" + data));
+        }
+        document.querySelector("#" + data).removeAttribute("id");
     }
-    document.querySelector("#" + data).removeAttribute("id");
+    updateCounter();
 }
 
 function makeNewTask(section, content, e) {
     var taskNameField, newItem;
 
     if (e) {
-		e.preventDefault();
-	}
+        e.preventDefault();
+    }
     taskNameField = document.querySelector("#taskName");
     newItem = document.createElement("div");
     if (content === "input") {
@@ -39,6 +41,7 @@ function makeNewTask(section, content, e) {
     newItem.textContent = content;
     newItem.addEventListener("dragstart", drag);
     document.querySelector("#" + section).appendChild(newItem);
+    updateCounter();
 }
 
 function loadBoard() {
@@ -61,6 +64,18 @@ function saveBoard() {
 
         sectionName = items[i].parentElement.id;
         localStorage.setItem(sectionName + "_" + i, items[i].textContent);
+    }
+}
+
+function updateCounter() {
+    var counter, i, sections, sectionId, items;
+    sections = document.querySelectorAll(".section");
+
+    for (i = 0; i < sections.length; i++) {
+        sectionId = document.querySelectorAll(".section")[i].id;
+        counter = document.querySelectorAll(".section .counter");
+        items = document.querySelectorAll("#" + sectionId + " .item").length;
+        counter[i].textContent = "(" + items + ")";
     }
 }
 

@@ -95,6 +95,10 @@ h3 {
     font-size: 1.1em;
 }
 
+.counter {
+    margin-left: 5px;
+}
+
 .item {
     margin: 15px;
     padding: 10px;
