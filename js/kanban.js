@@ -32,15 +32,19 @@ function makeNewTask(section, content, e) {
         e.preventDefault();
     }
     taskNameField = document.querySelector("#taskName");
-    newItem = document.createElement("div");
-    if (content === "input") {
+        if (content === "input") {
         content = taskNameField.value;
     }
-    newItem.className = "item";
-    newItem.draggable = true;
-    newItem.textContent = content;
-    newItem.addEventListener("dragstart", drag);
-    document.querySelector("#" + section).appendChild(newItem);
+    content = content.split("+");
+
+    for (var i = 0; i < content.length; i++) {
+        newItem = document.createElement("div");
+        newItem.className = "item";
+        newItem.draggable = true;
+        newItem.textContent = content[i];
+        newItem.addEventListener("dragstart", drag);
+        document.querySelector("#" + section).appendChild(newItem);
+    }
     updateCounter();
 }
 
