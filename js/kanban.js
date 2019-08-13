@@ -1,32 +1,34 @@
-function allowDrop() {
-    event.preventDefault();
+function allowDrop(e) {
+    e.preventDefault();
 }
 
-function drag() {
-    event.dataTransfer.setData("text", event.target.id = "drag");
+function drag(e) {
+    e.dataTransfer.setData("text", e.target.id = "drag");
 }
 
-function drop() {
-    var data = event.dataTransfer.getData("text");
+function drop(e) {
+    var data = e.dataTransfer.getData("text");
 
-    event.preventDefault();
-    event.stopPropagation();
+    e.preventDefault();
+    e.stopPropagation();
 
-    if (event.target === document.body) {
+    if (e.target === document.body) {
         document.querySelector("#" + data).remove();
         return;
-    } else if (event.target.className === "section") {
-        event.target.appendChild(document.querySelector("#" + data));
-    } else if (event.target.className === "item") {
-        event.target.parentElement.appendChild(document.querySelector("#" + data));
+    } else if (e.target.className === "section") {
+        e.target.appendChild(document.querySelector("#" + data));
+    } else if (e.target.className === "item") {
+        e.target.parentElement.appendChild(document.querySelector("#" + data));
     }
     document.querySelector("#" + data).removeAttribute("id");
 }
 
-function makeNewTask(section, content) {
+function makeNewTask(section, content, e) {
     var taskNameField, newItem;
 
-    event.preventDefault();
+    if (e) {
+		e.preventDefault();
+	}
     taskNameField = document.querySelector("#taskName");
     newItem = document.createElement("div");
     if (content === "input") {
